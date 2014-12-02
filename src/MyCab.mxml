@@ -1,5 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:ViewNavigatorApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
-							xmlns:s="library://ns.adobe.com/flex/spark" firstView="views.MyCabHomeView"  applicationDPI="160">
-	
+<s:ViewNavigatorApplication xmlns:fx="http://ns.adobe.com/mxml/2009"  
+							xmlns:s="library://ns.adobe.com/flex/spark"  
+							firstView="views.HomeView"  applicationDPI="160"
+							>
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		@namespace components "spark.components.*";
+		
+		@font-face { 
+			src: url("src/assets/fonts/Aller_Rg.ttf"); 
+			fontFamily: Aller; 
+			fontWeight:normal;
+			fontStyle:normal;
+			embedAsCFF: false; 
+		}
+		components|View
+		{
+			backgroundColor : #25373e;
+			color:#ffffff;
+			fontFamily:Aller;
+		}
+		
+		s|List
+		{
+			alternatingItemColors:#FFFFFF,#F7F7F2
+		}
+		
+		s|TextInput
+		{
+			color:0;
+		}
+		
+		
+	</fx:Style>
 </s:ViewNavigatorApplication>

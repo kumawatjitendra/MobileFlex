@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<components:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				 xmlns:s="library://ns.adobe.com/flex/spark" xmlns:components="spark.components.*" title="Sign In Here">
+	
+	<fx:Script>
+		<![CDATA[
+			import model.LoginVO;
+			import model.Services;
+			
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			protected function submit_clickHandler(event:MouseEvent):void
+			{
+				// create service  with login and LoginVO as arg
+				ro_submit_call.login(LoginVO)
+			}
+			
+			protected function ro_submit_call_resultHandler(event:ResultEvent):void
+			{
+				navigator.pushView(UserLoginSuccessView)				
+			}
+			
+			protected function ro_submit_call_faultHandler(event:FaultEvent):void
+			{
+				navigator.pushView(ErrorView)			
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<s:RemoteObject id="ro_submit_call"  result="ro_submit_call_resultHandler(event)" fault="ro_submit_call_faultHandler(event)" endpoint="{Services.url}" destination="{Services.destination}"/>
+	</fx:Declarations>
+	<components:layout>
+		<s:VerticalLayout verticalAlign="middle" horizontalAlign="center">
+			
+		</s:VerticalLayout>
+	</components:layout>
+	
+	<s:TextInput id="uname"  prompt="Username"/>
+	<s:TextInput id="pwd"  prompt="Password"/>
+	<s:Button id="submit" label="sign in" click="submit_clickHandler(event)" />
+</components:View>

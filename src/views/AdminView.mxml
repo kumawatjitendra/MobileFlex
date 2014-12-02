@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<components:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				 xmlns:s="library://ns.adobe.com/flex/spark" xmlns:components="spark.components.*" title="Admin"  creationComplete="view1_creationCompleteHandler(event)">
+	<components:layout>
+		<s:VerticalLayout verticalAlign="middle" horizontalAlign="center">
+			
+		</s:VerticalLayout>
+	</components:layout>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			protected function ro_submit_call_resultHandler(event:ResultEvent):void
+			{
+				usrLst.dataProvider = 	event.result
+			}
+			
+			protected function ro_submit_call_faultHandler(event:FaultEvent):void
+			{
+				navigator.pushView(ErrorView)			
+			}
+			
+			protected function view1_creationCompleteHandler(event:FlexEvent):void
+			{
+				ro_submit_call.getUserList();
+			}
+			
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				navigator.popToFirstView();
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<s:RemoteObject id="ro_submit_call"  result="ro_submit_call_resultHandler(event)" fault="ro_submit_call_faultHandler(event)" endpoint="{Services.url}" destination="{Services.destination}"/>
+	</fx:Declarations>
+	<s:Button label="Home" click="button1_clickHandler(event)" />
+	<s:List width="100%" height="100%" click="navigator.pushView(UserDetailsView,usrLst.selectedItem)" id="usrLst">
+		
+	</s:List>
+</components:View>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<components:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				 xmlns:s="library://ns.adobe.com/flex/spark" xmlns:components="spark.components.*" title="Confirmation">
+	
+	<components:layout>
+		<s:VerticalLayout verticalAlign="middle" horizontalAlign="center">
+			
+		</s:VerticalLayout>
+	</components:layout>
+	<fx:Script>
+		<![CDATA[
+			private static const successTxt:String ='Thanks for booking ,confirmation details will be informed by sms .'
+		]]>
+	</fx:Script>
+	<s:Label text="{successTxt}" width="100%">
+	</s:Label>
+	<s:Button label="New Request" click="navigator.pushView(UserLoginSuccessView)" />
+</components:View>

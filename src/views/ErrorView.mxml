@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<components:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				 xmlns:s="library://ns.adobe.com/flex/spark" xmlns:components="spark.components.*" title="Try Again">
+	<components:layout>
+		<s:VerticalLayout verticalAlign="middle" horizontalAlign="center">
+			
+		</s:VerticalLayout>
+	</components:layout>
+	<fx:Script>
+		<![CDATA[
+			
+			protected function tryAgain_clickHandler(event:MouseEvent):void
+			{
+				navigator.popView();
+			}
+			[Embed(source="src/assets/images/alert_png.png")]
+			private var errorImg:Class;
+			
+			[Embed(source="src/assets/images/manual_Autorefresh.png")]
+			private var refrImg:Class;
+			
+			
+			private static const errorTxt:String = 'Error in Connection';
+		]]>
+	</fx:Script>
+	<s:HGroup >
+		<s:Image source="{errorImg}"/>
+		<s:Label  width="100%" textAlign="center" text="{errorTxt}"/>
+	</s:HGroup>
+	
+	<s:Image id="tryAgain" click="tryAgain_clickHandler(event)" source="{refrImg}" />
+</components:View>

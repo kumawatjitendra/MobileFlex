@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<components:View xmlns:fx="http://ns.adobe.com/mxml/2009"  
+				 xmlns:s="library://ns.adobe.com/flex/spark" xmlns:components="spark.components.*" title="Enter Travel Details">
+	
+	<fx:Script>
+		<![CDATA[
+			import model.Services;
+			import model.TravelVO;
+			
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			protected function submit_clickHandler(event:MouseEvent):void
+			{
+				// create service  with bookCab and TravelVO as arg
+				ro_submit_call.bookCab(TravelVO)
+			}
+			
+			protected function ro_submit_call_resultHandler(event:ResultEvent):void
+			{
+				
+				navigator.pushView(RequestSubmitSuccessView)				
+			}
+			
+			protected function ro_submit_call_faultHandler(event:FaultEvent):void
+			{
+				navigator.pushView(ErrorView)			
+			}
+			
+			[Embed(source="src/assets/images/arrow.png")]
+			private var submitImg:Class;
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<s:RemoteObject id="ro_submit_call"  result="ro_submit_call_resultHandler(event)" fault="ro_submit_call_faultHandler(event)" endpoint="{Services.url}" destination="{Services.destination}"/>
+	</fx:Declarations>
+	
+	<components:layout>
+		<s:VerticalLayout verticalAlign="middle" horizontalAlign="center">
+			
+		</s:VerticalLayout>
+	</components:layout>
+
+	<s:TextInput id="c_name"  prompt="Name"/>
+	<s:TextInput id="c_Phone"  prompt="Mobile Number"/>
+	<s:TextInput id="c_source" prompt="Boarding  Point"/>
+	<s:TextInput id="c_time" prompt="Boarding  Time"/>
+	<s:TextInput id="c_destination" prompt="Alighting Point"/>
+	<s:Spacer height="10" />
+	<s:Button id="submit" label="Book My Cab" click="submit_clickHandler(event)" icon="{submitImg}"/>
+</components:View>

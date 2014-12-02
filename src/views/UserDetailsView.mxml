@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<components:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				 xmlns:s="library://ns.adobe.com/flex/spark" xmlns:components="spark.components.*" title="User Details" creationComplete="view1_creationCompleteHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			protected function view1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// create service  with getUserDetail and id as arg
+				ro_submit_call.getUserDetail(data.id);
+			}
+			
+			protected function ro_submit_call_resultHandler(event:ResultEvent):void
+			{
+				// send respose in form of UserVO
+				uname.text = event.result
+			}
+			
+			protected function ro_submit_call_faultHandler(event:FaultEvent):void
+			{
+				navigator.pushView(ErrorView)			
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<s:RemoteObject id="ro_submit_call"  result="ro_submit_call_resultHandler(event)" fault="ro_submit_call_faultHandler(event)" endpoint="{Services.url}" destination="{Services.destination}"/>
+	</fx:Declarations>
+	
+	<components:layout>
+		<s:VerticalLayout verticalAlign="middle" horizontalAlign="center">
+			
+		</s:VerticalLayout>
+	</components:layout>
+	<s:Button label="Back" click="navigator.popView()" />
+	<s:Label text="User" id="uname"/>
+	
+</components:View>
