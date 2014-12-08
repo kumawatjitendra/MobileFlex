@@ -8,8 +8,8 @@ package model
 		{
 		}
 		
-		public static const url:String ='/';
-		public static const destination:String='';
+		public static const url:String ='http://localhost:8081/samplewebapp/messagebroker/amf/';
+		public static const destination:String='SimpleCustomerServiceDestination';
 		
 	}
 }

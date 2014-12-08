@@ -12,12 +12,12 @@
 			protected function submit_clickHandler(event:MouseEvent):void
 			{
 				// create service  with login and LoginVO as arg
-				ro_submit_call.login(LoginVO)
+				ro_submit_call.isUserValid(uname.text,uname.text)
 			}
 			
 			protected function ro_submit_call_resultHandler(event:ResultEvent):void
 			{
-				navigator.pushView(UserLoginSuccessView)				
+					navigator.pushView(UserLoginSuccessView)				
 			}
 			
 			protected function ro_submit_call_faultHandler(event:FaultEvent):void

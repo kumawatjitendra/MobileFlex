@@ -5,14 +5,20 @@
 	<fx:Script>
 		<![CDATA[
 			import model.Services;
-			import model.UserVO;
+			import model.User;
 			
 			import mx.rpc.events.FaultEvent;
 			import mx.rpc.events.ResultEvent;
 			protected function submit_clickHandler(event:MouseEvent):void
 			{
 				// create service  with registerUser and UserVO as arg
-				ro_submit_call.registerUser(UserVO)
+				var uvo:User = new User();
+				uvo.userId = username.text;
+				uvo.name = uname.text;
+				uvo.mobile = phone.text;
+				uvo.password = pwd.text;
+				uvo.city = city.text;
+				ro_submit_call.createNewUser(uvo);
 			}
 			
 			protected function ro_submit_call_resultHandler(event:ResultEvent):void
@@ -37,10 +43,11 @@
 		</s:VerticalLayout>
 	</components:layout>
 	<s:TextInput id="uname"  prompt="Name"/>
-	<s:TextInput id="email"  prompt="Email"/>
+<!--	<s:TextInput id="email"  prompt="Email"/>-->
 	<s:TextInput id="username"  prompt="Username"/>
 	<s:TextInput id="pwd"  prompt="Password"/>
 	<s:TextInput id="cpwd"  prompt="Confirm Password"/>
 	<s:TextInput id="phone"  prompt="Phone Number"/>
+	<s:TextInput id="city"  prompt="city"/>
 	<s:Button id="submit" label="sign in" click="submit_clickHandler(event)" />
 </components:View>
