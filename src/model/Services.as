@@ -8,7 +8,7 @@ package model
 		{
 		}
 		
-		public static const url:String ='http://localhost:8081/samplewebapp/messagebroker/amf/';
+		public static const url:String ='http://3099750b.ngrok.com/samplewebapp/messagebroker/amf/';
 		public static const destination:String='SimpleCustomerServiceDestination';
 		
 	}

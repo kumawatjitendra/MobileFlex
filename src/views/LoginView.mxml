@@ -4,6 +4,8 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import classes.Result;
+			
 			import model.LoginVO;
 			import model.Services;
 			
@@ -12,12 +14,20 @@
 			protected function submit_clickHandler(event:MouseEvent):void
 			{
 				// create service  with login and LoginVO as arg
-				ro_submit_call.isUserValid(uname.text,uname.text)
+				ro_submit_call.isUserValid(uname.text,pwd.text)
 			}
 			
 			protected function ro_submit_call_resultHandler(event:ResultEvent):void
 			{
-					navigator.pushView(UserLoginSuccessView)				
+					var result:Result = Result(event.result);
+					if(result.isResultValid)
+					{
+					navigator.pushView(UserLoginSuccessView)	
+					}
+					else
+					{
+						navigator.pushView(ErrorView);
+					}
 			}
 			
 			protected function ro_submit_call_faultHandler(event:FaultEvent):void
